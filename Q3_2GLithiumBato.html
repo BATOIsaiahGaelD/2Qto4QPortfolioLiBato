@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            * {
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                margin:0vw;
+            }
+            fieldset {
+                background-color:rgb(255, 140, 140);
+            }
+            legend {
+                font-weight:bold;
+                font-size:2vw;
+            }
+            input:focus {
+                background-color:rgb(142, 198, 255);
+                transform:scale(1.05);
+                transition:0.3s;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="clubform" action="submit" method="post">
+            <fieldset>
+                <fieldset>
+                    <legend>Standard Information</legend><br/>
+                        <label> StudentId 
+                            <input type="number" id="stid" name="stid" required>
+                        </label> <br/><br/>
+
+                        <label> Full Name
+                            <input type="text" id="fname" name="fname" required>
+                        </label> <br/><br/>
+
+                        <label> Birthday
+                            <input type="date" id="bday" name="bday" required>
+                        </label> <br/><br/>
+
+                        <label> Email
+                            <input type="email" id="em" name="em" required>
+                        </label><br/><br/>
+                </fieldset> <br/><br/>
+
+                <fieldset>
+                    <legend>Additional Information</legend><br/>
+                    <label> Phone Number
+                        <input type="text" id="mn" name="mn" required>
+                    </label><br/><br/>
+                    
+                    <label> Grade Level
+                        <select required>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </label><br/><br/>
+
+                    <label> Intern or Extern? <br/>
+                        <input m="Intern" type="radio" id="i" name="status" required>
+                        <label for="i">Intern</label>
+                        <input m="Extern" type="radio" id="e" name="status" required>
+                        <label for="e">Extern</label>
+                    </label><br/><br/>
+
+                    <label> Preferred Organization
+                        <select required>
+                            <option value="Alianti">Alianti</option>
+                            <option value="ACTS">ACTS</option>
+                            <option value="Celluloid">Celluloid</option>
+                            <option value="Math Club">Math Club</option>
+                            <option value="Likha">Likha</option>
+                            <option value="Himig Agham">Himig Agham</option>
+                        </select>
+                    </label><br/><br/>
+                </fieldset>
+                <br/>
+                <label> Why do you want to join?<br/>
+                    <textarea type="textarea" required></textarea>
+                </label><br/><br/>
+
+                <input value="Submit Details" type="submit" onsubmit="confirms()">
+                <input value="Clear Form" type="reset" onsubmit="confirmr()">
+
+            </fieldset>
+        </form>
+        <script>
+            function confirmr() {
+
+            }
+            function confirms() {
+
+            }
+        </script>
+    </body>
+</html>
