@@ -12,37 +12,141 @@
     <link rel="icon" href="./assets/oip.jpg" sizes="32x32" type="image/jpg" />
     <script src="script.js" defer></script>
     <style>
+        * {
+            box-sizing:border-box;
+            padding:0px;
+            margin:0px;
+        }
+        header {
+            background-color:rgb(158, 210, 255);
+            justify-content:center;
+            text-align:center;
+            padding-bottom:100px;
+        }
 
+        a {
+            text-decoration:none;
+            color:white;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        div.nav {
+            display:flex;
+        }
+
+        div.graded {
+            flex:33%;
+            background-color:rgb(199, 199, 199);
+            padding-bottom:50px;
+        }
+
+        ul.graded {
+            margin: 5vh;
+            margin-top:9vh;
+            background-color:rgb(131, 193, 247);
+            border-radius:5px;
+            text-align:center;
+        }
+
+        div.nongraded {
+            flex:34%;
+            background-color:gray;
+            padding-bottom:50px;
+        }
+
+        ul.nongraded {
+            margin: 5vh;
+            margin-top:9vh;
+            background-color:rgb(131, 193, 247);
+            border-radius:5px;
+            text-align:center;
+        }
+
+        div.other {
+            flex:33%;
+            background-color:black;
+        }
+
+        ul.other {
+            margin: 5vh;
+            margin-top:9vh;
+            background-color:rgb(131, 193, 247);
+            border-radius:5px;
+            text-align:center;
+        }
+        
+        div.body {
+            display:flex;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        div.first {
+            flex:50%;
+            padding-bottom:80px;
+        }
+
+        p.first {
+            display:block;
+            margin:auto;
+            width:100vh;
+            height:10vh;
+            text-shadow:2px 2px 5px gray;
+            margin-top:10vh;
+        }
+
+        div.second {
+            flex:50%;
+            background-color:rgb(63, 63, 63)
+        }
+        img {
+            display:block;
+            margin:auto;
+            margin-top:1vh;
+        }
+
+        footer {
+            display:block;
+            background-color:black;
+            color:white;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size:50px;
+        }
     </style>
 </head>
 <body>
     <header>
-        <div>
-            <h1>
-                My Portfolio of my work in the 2nd Quarter
-            </h1>
-        </div>
-        <div class="nav">
-            <div class="graded">
-                <a href="./public/2Q1GLithiumBato.html">All About Our Favorite Minecraft Structures</a>
-                <a href="./public/2Q1GLithiumBato.html">Q2 Second Graded Exercise</a>
-            </div>
-            <div class="nongraded">
-                <a href="./Q21NGLithiumBato.html">Q2 First Non Graded Exercise</a>
-            </div>
-            <div class="other">
-
-            </div>
-        </div>
+        <h1>
+            My Portfolio of my work in the 2nd Quarter
+        </h1>
     </header>
-    <body>
-        <div class="first">
+    <div class="nav">
+        <div class="graded">
+            <ul class="graded">
+                <a href="./public/2Q1GLithiumBato.html">All About Our Favorite Minecraft Structures</a></br>
+                <a href="./public/2Q1GLithiumBato.html">Q2 Second Graded Exercise</a>
+            </ul>
+        </div>
+        <div class="nongraded">
+            <ul class="nongraded">
+                <a href="./Q21NGLithiumBato.html">Q2 First Non Graded Exercise</a>
+            </ul>
+        </div>
+        <div class="other">
+            <ul class="other">
 
+            </ul>
+        </div>
+    </div>
+    <div class="body">
+        <div class="first">
+            <p class="first">
+                Good morning po ma'am! Here is my index.html site. This site will be used to access all of my graded
+                exercises, as well as my non-graded exercises and other things.
+            </p>
         </div>
         <div class="second">
-            
+            <img src="../assets/minecrafticon-png.png" alt="image" width="200vh" height="200vh">  
         </div>
-    </body>
+    </div>
     <footer>
         <hr/>
         <p>Copyright <span>&copy;Isaiah Gael D. Bato</span></p>
