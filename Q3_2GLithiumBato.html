@@ -26,7 +26,7 @@
                 <fieldset>
                     <legend>Standard Information</legend><br/>
                         <label> StudentId 
-                            <input type="number" id="stid" name="stid" required>
+                            <input onblur="functionblur()" type="number" id="stid" name="stid" required>
                         </label> <br/><br/>
 
                         <label> Full Name
@@ -83,16 +83,19 @@
                 </label><br/><br/>
 
                 <input value="Submit Details" type="submit" onsubmit="confirms()">
-                <input value="Clear Form" type="reset" onsubmit="confirmr()">
+                <input value="Clear Form" type="reset" onreset="confirmr()">
 
             </fieldset>
         </form>
         <script>
             function confirmr() {
-
+                window.alert("Are you sure you want to reset the form?");
             }
             function confirms() {
-
+                window.alert("Are you sure you want to submit the form?");
+            }
+            function functionblur() {
+                
             }
         </script>
     </body>
