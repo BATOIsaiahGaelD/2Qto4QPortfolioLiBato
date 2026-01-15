@@ -14,88 +14,105 @@
                 font-size:2vw;
             }
             input:focus {
-                background-color:rgb(142, 198, 255);
                 transform:scale(1.05);
-                transition:0.3s;
+                transition:0.5s;
+            }
+            div.form {
+                position:absolute;
+                width:30vw;
+                height:30vw;
+                left: 35vw;
+                top:3vw;
+            } /*https://www.w3schools.com/css/css3_gradients.asp*/
+            body {
+                background-image: linear-gradient(to top, rgb(0,0,0), rgb(255,255,255));
             }
         </style>
     </head>
     <body>
-        <form id="clubform" action="submit" method="post">
-            <fieldset>
+        
+        <div class="form">
+            <form id="clubform" action="submit" method="post" onsubmit="confirms()" onreset="confirmr()">
                 <fieldset>
-                    <legend>Standard Information</legend><br/>
-                        <label> StudentId 
-                            <input onblur="functionblur()" type="number" id="stid" name="stid" required>
-                        </label> <br/><br/>
-
-                        <label> Full Name
-                            <input type="text" id="fname" name="fname" required>
-                        </label> <br/><br/>
-
-                        <label> Birthday
-                            <input type="date" id="bday" name="bday" required>
-                        </label> <br/><br/>
-
-                        <label> Email
-                            <input type="email" id="em" name="em" required>
+                    <fieldset>
+                        <legend>Standard Information</legend><br/>
+                            <label> StudentId 
+                                <input onblur="functionblur(this)" onfocus="functionfocus(this)" type="number" id="stid" name="stid" required>
+                            </label> <br/><br/>
+    
+                            <label> Full Name
+                                <input onblur="functionblur(this)" onfocus="functionfocus(this)" type="text" id="fname" name="fname" required>
+                            </label> <br/><br/>
+    
+                            <label> Birthday
+                                <input onblur="functionblur(this)" onfocus="functionfocus(this)" type="date" id="bday" name="bday" required>
+                            </label> <br/><br/>
+    
+                            <label> Email
+                                <input onblur="functionblur(this)" onfocus="functionfocus(this)" type="email" id="em" name="em" required>
+                            </label><br/><br/>
+                    </fieldset> <br/><br/>
+    
+                    <fieldset>
+                        <legend>Additional Information</legend><br/>
+                        <label> Phone Number
+                            <input onblur="functionblur(this)" onfocus="functionfocus(this)" type="text" id="mn" name="mn" required>
                         </label><br/><br/>
-                </fieldset> <br/><br/>
-
-                <fieldset>
-                    <legend>Additional Information</legend><br/>
-                    <label> Phone Number
-                        <input type="text" id="mn" name="mn" required>
+                        
+                        <label> Grade Level
+                            <select required>
+                                <option value="7">Grade 7</option>
+                                <option value="8">Grade 8</option>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11">Grade 11</option>
+                                <option value="12">Grade 12</option>
+                            </select>
+                        </label><br/><br/>
+    
+                        <label> Intern or Extern? <br/>
+                            <input m="Intern" type="radio" id="i" name="status" required>
+                            <label for="i">Intern</label>
+                            <input m="Extern" type="radio" id="e" name="status" required>
+                            <label for="e">Extern</label>
+                        </label><br/><br/>
+    
+                        <label> Preferred Organization
+                            <select required>
+                                <option value="Alianti">Alianti</option>
+                                <option value="ACTS">ACTS</option>
+                                <option value="Celluloid">Celluloid</option>
+                                <option value="Math Club">Math Club</option>
+                                <option value="Likha">Likha</option>
+                                <option value="Himig Agham">Himig Agham</option>
+                            </select>
+                        </label><br/><br/>
+                    </fieldset>
+                    <br/>
+                    <label> Why do you want to join?<br/>
+                        <textarea onblur="functionblur(this)" onfocus="functionfocus(this)" type="textarea" required></textarea>
                     </label><br/><br/>
-                    
-                    <label> Grade Level
-                        <select required>
-                            <option value="7">Grade 7</option>
-                            <option value="8">Grade 8</option>
-                            <option value="9">Grade 9</option>
-                            <option value="10">Grade 10</option>
-                            <option value="11">Grade 11</option>
-                            <option value="12">Grade 12</option>
-                        </select>
-                    </label><br/><br/>
-
-                    <label> Intern or Extern? <br/>
-                        <input m="Intern" type="radio" id="i" name="status" required>
-                        <label for="i">Intern</label>
-                        <input m="Extern" type="radio" id="e" name="status" required>
-                        <label for="e">Extern</label>
-                    </label><br/><br/>
-
-                    <label> Preferred Organization
-                        <select required>
-                            <option value="Alianti">Alianti</option>
-                            <option value="ACTS">ACTS</option>
-                            <option value="Celluloid">Celluloid</option>
-                            <option value="Math Club">Math Club</option>
-                            <option value="Likha">Likha</option>
-                            <option value="Himig Agham">Himig Agham</option>
-                        </select>
-                    </label><br/><br/>
+    
+                    <input value="Submit Details" type="submit">
+                    <input value="Clear Form" type="reset">
                 </fieldset>
-                <br/>
-                <label> Why do you want to join?<br/>
-                    <textarea type="textarea" required></textarea>
-                </label><br/><br/>
-
-                <input value="Submit Details" type="submit" onsubmit="confirms()">
-                <input value="Clear Form" type="reset" onreset="confirmr()">
-
-            </fieldset>
-        </form>
+            </form>
+        </div>
         <script>
             function confirmr() {
-                window.alert("Are you sure you want to reset the form?");
+                confirm("Are you sure you want to reset the form?");
             }
             function confirms() {
-                window.alert("Are you sure you want to submit the form?");
+                confirm("Are you sure you want to submit the form?");
             }
-            function functionblur() {
-                
+            function functionfocus(box) {
+                box.style.backgroundColor="rgb(142, 198, 255)";
+                box.style.transition="0.5s";
+                box.transform="scale(1.05)";
+            }
+            function functionblur(box) {
+                box.style.backgroundColor="rgb(200,200,200)";
+                box.style.transition="0.5s";
             }
         </script>
     </body>
