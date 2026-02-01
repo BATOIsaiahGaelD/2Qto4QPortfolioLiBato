@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-
+        <style>
+            table, tr, th, td {
+                border:1px solid black;
+            }
+        </style>
     </head>
     <body>
         <h2>Show List Of Students Who Signed-Up</h2>
@@ -66,10 +70,15 @@
                             counter++;
                         }
                     }
-                signups.innerHTML = tablestring;
+                if (counter === 0){
+                    signups.innerHTML = "No signups for this club yet.";
+                }
+                else {
+                    signups.innerHTML = tablestring;
+                }
                 total.innerHTML = "Total Signups: " + counter;
             }
-            
+            console.log(placeholder);
         </script>
     </body>
 </html>
