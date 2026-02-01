@@ -32,7 +32,7 @@
     <body>
         
         <div class="form">
-            <form id="clubform" action="submit" method="post" onsubmit="confirms()" onreset="confirmr()">
+            <form action="viewSignUps.html" id="clubform" method="post" onsubmit="confirms(this)" onreset="confirmr(this)">
                 <fieldset>
                     <fieldset>
                         <legend>Standard Information</legend><br/>
@@ -60,7 +60,7 @@
                         </label><br/><br/>
                         
                         <label> Grade Level
-                            <select required>
+                            <select id="gl" required>
                                 <option value="7">Grade 7</option>
                                 <option value="8">Grade 8</option>
                                 <option value="9">Grade 9</option>
@@ -70,7 +70,7 @@
                             </select>
                         </label><br/><br/>
     
-                        <label> Intern or Extern? <br/>
+                        <label id="iore"> Intern or Extern? <br/>
                             <input m="Intern" type="radio" id="i" name="status" required>
                             <label for="i">Intern</label>
                             <input m="Extern" type="radio" id="e" name="status" required>
@@ -78,7 +78,7 @@
                         </label><br/><br/>
     
                         <label> Preferred Organization
-                            <select required>
+                            <select id="po" required>
                                 <option value="Alianti">Alianti</option>
                                 <option value="ACTS">ACTS</option>
                                 <option value="Celluloid">Celluloid</option>
@@ -95,14 +95,15 @@
     
                     <input value="Submit Details" type="submit">
                     <input value="Clear Form" type="reset">
+                    <a href="viewSignUps.html"><input type="button" value="View Sign Ups"></input></a>
                 </fieldset>
             </form>
         </div>
         <script>
-            function confirmr() {
-                confirm("Are you sure you want to reset the form?");
+            function confirmr(cf) {
+                    
             }
-            function confirms() {
+            function confirms(cf) {
                 confirm("Are you sure you want to submit the form?");
             }
             function functionfocus(box) {
@@ -113,6 +114,49 @@
             function functionblur(box) {
                 box.style.backgroundColor="rgb(200,200,200)";
                 box.style.transition="0.5s";
+            }
+
+            //form js
+            const HOLDER = 'info'
+            function loadInfo() {
+                const raw = localStorage.getItem(HOLDER);
+                return raw ? JSON.parse(raw) : [];
+            }
+
+            function saveInfo(info) {
+                localStorage.setItem(HOLDER, JSON.stringify(info));
+            }
+            const form = document.getElementById("clubform");
+            form.onsubmit = i => {
+                i.preventDefault();
+                const studentId = document.getElementById("stid").value;
+                const studentName = document.getElementById("fname").value;
+                const studentBirthday = document.getElementById("bday").value;
+                const mail = document.getElementById("em").value;
+                const PhoneNumber = document.getElementById("mn").value;
+                const GradeLevel = document.getElementById("gl").value;
+                const Intern = document.getElementById("i").value;
+                const Extern = document.getElementById("e").value;
+                const PrefOrg = document.getElementById("po").value;
+
+                const obj = {
+                    id: Date.now(),
+                    studentId,
+                    studentName,
+                    studentBirthday,
+                    mail,
+                    PhoneNumber,
+                    GradeLevel,
+                    Intern,
+                    Extern,
+                    PrefOrg
+                }
+
+                const info = loadInfo();
+                info.push(obj);
+                saveInfo(info);
+                form.reset();
+                console.log(info);
             }
         </script>
     </body>

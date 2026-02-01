@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Notes Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width:700px; margin:20px; }
+    input, button { padding:8px; margin:4px 0; }
+    li { margin:6px 0; }
+  </style>
+</head>
+<body>
+  <h2>Save a Note</h2>
+
+    <input id="name" placeholder="Your name" required>
+    <input id="note" placeholder="Short note" required>
+    <button id="submit" type="submit">Save</button>
+
+
+  <h3>Saved Notes</h3>
+  <ul id="list"></ul>
+
+  <script>
+    // Helpers for localStorage
+    const KEY = 'notes';
+
+    function loadNotes() {
+      const raw = localStorage.getItem(KEY);
+
+      if (raw){  //check if raw is not null or undefined
+        return JSON.parse(raw);
+      }
+      else{
+        return [];
+      }
+    }
+
+    function saveNotes(entries) {
+      localStorage.setItem(KEY, JSON.stringify(entries));
+    }
+
+    // Render list to the page
+    function render() {
+      const notes = loadNotes();
+      const list = document.getElementById('list');
+      if (notes.length === 0) {
+        list.innerHTML = '<li><b>No notes yet</b></li>';
+        return;
+      }
+
+      let output = "";
+      for (let i = 0; i < notes.length; i++) {
+        output += `<li>
+           <i>${escapeHtml(notes[i].name)}</i> (${notes[i].time}) — ${escapeHtml(notes[i].text)}
+           <button data-i="${i}">Delete</button>
+         </li>`;
+      }
+      list.innerHTML = output;
+
+    }
+
+
+    // Simple HTML escape to avoid accidental HTML injection in demo
+    function escapeHtml(s) {
+      let str = String(s);
+      let escapedStr = "";
+      for (let i = 0; i < str.length; i++) {
+        let c = str[i];
+        if (c === '&') {
+          escapedStr += '&amp;';
+        } else if (c === '<') {
+          escapedStr += '&lt;';
+        } else if (c === '>') {
+          escapedStr += '&gt;';
+        } else if (c === '"') {     
+          escapedStr += '&quot;';
+        } else if (c === "'") {
+          escapedStr += '&#39;';
+        } else {
+          escapedStr += c;
+        }
+      }
+      return escapedStr;
+    }
+
+
+    //  read values into an object and persist
+    const submitButton = document.getElementById('submit');
+    submitButton.onclick = function()  {
+      const name = document.getElementById('name').value.trim();
+      const text = document.getElementById('note').value.trim();
+      
+      if (!name || !text) return;
+
+      const obj = {
+        id: Date.now(),
+        name: name,
+        text: text,
+        time: new Date().toLocaleTimeString() // store timestamp
+      };
+
+      const notes = loadNotes();
+      notes.push(obj);           // grow the array over time
+      saveNotes(notes);          // store updated array in localStorage
+      render();
+    };
+
+
+    // Remove item from localStorage by index
+    // Find the list element and add click event listener
+    document.getElementById('list').onclick = function(event)
+    {
+      // Step 1: Check if the thing clicked is a button
+      if (event.target.tagName.toLowerCase() === 'button'){
+
+        // Step 2: Get the index number from the button
+          let index = event.target.dataset.i;
+          index = Number(index);
+
+          // Step 3: Load the notes from localStorage
+          const notes = loadNotes();
+
+          // Step 4: Remove one note at that index
+          notes.splice(index, 1);        // remove one item
+
+          // Step 5: Save the updated notes back to localStorage
+          saveNotes(notes);
+
+          // Step 6: Show the new list on the page
+          render();
+      }
+      else{
+        return;
+      }
+    };
+
+    // Initial render on page load
+    render();
+  </script>
+</body>
+</html>

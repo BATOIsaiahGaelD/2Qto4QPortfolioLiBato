@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>Show List Of Students Who Signed-Up</h2>
+        <h4>by Isaiah Bato</h4>
+        <a href="Q3_2GLithiumBato.html">Back to Signup Page</a>
+        <p id="total"></p>
+        <label>Select Club
+            <select id="se" required>
+                <option value="All">All</option>
+                <option value="Alianti">Alianti</option>
+                <option value="ACTS">ACTS</option>
+                <option value="Celluloid">Celluloid</option>
+                <option value="Math Club">Math Club</option>
+                <option value="Likha">Likha</option>
+                <option value="Himig Agham">Himig Agham</option>
+          </select>
+          <button onclick="select()">See Signups</button>
+        </label>
+        <table id="signups"></table>
+        <script>
+            const HOLDER = 'info';
+            function summon(){
+                const raw = localStorage.getItem(HOLDER);
+                return raw ? JSON.parse(raw) : [];
+            }
+                const placeholder = summon();
+            function select() {
+                let selector = se.value;
+                let counter = 0;
+                tablestring = "<tr><th>Club</th><th>ID</th><th>Fullname</th><th>Grade</th><th>Email</th><th>Mobile</th><th>Intern|Extern</th>"
+                signups.innerHTML = "";
+                if (selector == "All") {
+                    for (let ndx = 0; ndx < placeholder.length; ndx++) {
+                        tablestring += "<tr>";
+                        tablestring += "<td>" + placeholder[ndx].PrefOrg + "</td>";
+                        tablestring += "<td>" + placeholder[ndx].studentId + "</td>";
+                        tablestring += "<td>" + placeholder[ndx].studentName + "</td>";
+                        tablestring += "<td>" + placeholder[ndx].GradeLevel + "</td>";
+                        tablestring += "<td>" + placeholder[ndx].mail + "</td>";
+                        tablestring += "<td>" + placeholder[ndx].PhoneNumber + "</td>";
+                        if (placeholder[ndx].Intern == "on")
+                            tablestring += "<td>Intern</td>";
+                        else
+                            tablestring += "<td>Extern</td>";
+                        counter++;
+                    }
+                }
+                else
+                    for (let ndx = 0; ndx < placeholder.length; ndx++) {
+                        if (placeholder[ndx].PrefOrg == selector) {
+                            tablestring += "<tr>";
+                            tablestring += "<td>" + placeholder[ndx].PrefOrg + "</td>";
+                            tablestring += "<td>" + placeholder[ndx].studentId + "</td>";
+                            tablestring += "<td>" + placeholder[ndx].studentName + "</td>";
+                            tablestring += "<td>" + placeholder[ndx].GradeLevel + "</td>";
+                            tablestring += "<td>" + placeholder[ndx].mail + "</td>";
+                            tablestring += "<td>" + placeholder[ndx].PhoneNumber + "</td>";
+                            if (placeholder[ndx].Intern == "on")
+                                tablestring += "<td>Intern</td>";
+                            else
+                                tablestring += "<td>Extern</td>";
+                            counter++;
+                        }
+                    }
+                signups.innerHTML = tablestring;
+                total.innerHTML = "Total Signups: " + counter;
+            }
+            
+        </script>
+    </body>
+</html>
