@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .clicked {
+                color:orange;
+            }
+            .unclicked {
+                color:black;
+            }
+            div#movieform {
+                position:absolute;
+                border-radius:0.5vw;
+                box-shadow: 0vw 0vw 0.7vw rgb(111, 111, 111);
+                background-color:rgb(255, 255, 255);
+                display:block;
+                align-items:center;
+                justify-content: center;
+                width:34vw;
+                top:5vw;
+                padding-top:0.5vw;
+                padding-bottom:2vw;
+                left:33vw;
+            }
+            #title, #movieyear, #genre, #submitmovie {
+                width:30vw;
+                margin-bottom:1vw;
+                height:2vw;
+                border-radius:0.2vw;
+                margin-left:1.7vw;
+            }
+            #submitmovie {
+                height:2.5vw;
+                font-family:Arial, Helvetica, sans-serif;
+                font-weight:bold;
+                background-color:rgb(64, 124, 255);
+                color:white;
+            }
+            span.star {
+                margin-top:0.2vw;
+                position:relative;
+                margin-bottom:2vw;
+                width:1vw;
+                height:1vw;
+                display:inline-block;
+                font-size:1.5vw;
+                left:1.7vw;
+            }
+            #lablet, #labelmy, #labelg, #ratinglabel {
+                font-family:Arial, Helvetica, sans-serif;
+                font-weight:bold;
+                margin-left:1.7vw;
+            }
+            #formtitle {
+                font-weight:bold;
+                font-family:Arial, Helvetica, sans-serif;
+                text-align: center;
+                font-size:2vw;
+            }
+            #movielisttitle {
+                font-weight:bold;
+                text-align:center;
+                font-size:1.5vw;
+                display:block;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+            #movierating {
+                display:block;
+                margin:auto;
+            }
+            li {
+                margin-bottom: 0.5vw; 
+                margin-left:-1.5vw; 
+                background-color:rgb(245, 245, 245); 
+                list-style-type: none; 
+                border-style:solid; 
+                border-width:0.1vw; 
+                height:2.5vw;
+                width:32vw;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="movieform">
+            <div>
+                <form id="movierating">
+                    <p id="formtitle">Add a Movie</p> 
+                    <label id="lablet">Title:</label></br>
+                    <input type="text" required id="title"></br>
+                    <label id="labelmy">Year:</label></br>
+                    <input type="number" required id="movieyear"></br>
+                    <label id="labelg">Genre:</label></br>
+                    <select id="genre" required>
+                        <option value="Action">Action</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-fi">Sci-Fi</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Comedy">Comedy</option>
+                    </select></br>
+                    
+                    <label id="ratinglabel">Rating:</label> </br>
+                    <span class="star" id="star1" onclick="starrating(1)">★</span>
+                    <span class="star" id="star2" onclick="starrating(2)">★</span>
+                    <span class="star" id="star3" onclick="starrating(3)">★</span>
+                    <span class="star" id="star4" onclick="starrating(4)">★</span>
+                    <span class="star" id="star5" onclick="starrating(5)">★</span>
+                </br>
+                    <input id="submitmovie" type="submit" value="Add Movie">
+                </form>
+            </div>
+            <div id="listofmovies">
+                <p id="movielisttitle">Movie List</p>
+                <ul id="movielist"></ul>
+            </div>
+        </div>
+            <script>
+                const KEYNOTE = 'array';
+                const RATENOTE = 'rating';
+                function savestarrating(n) {
+                    localStorage.setItem(RATENOTE, JSON.stringify(n))
+                }
+                function getstarrating() {
+                    return Number(localStorage.getItem(RATENOTE));
+                }
+                function starrating(n) {
+                    if (!n) {
+                        n=0;
+                    }
+                    if (n===0) {
+                        document.getElementById("star1").classList.add("unclicked");
+                        document.getElementById("star2").classList.add("unclicked");
+                        document.getElementById("star3").classList.add("unclicked");
+                        document.getElementById("star4").classList.add("unclicked");
+                        document.getElementById("star5").classList.add("unclicked");
+
+                        document.getElementById("star1").classList.remove("clicked");
+                        document.getElementById("star2").classList.remove("clicked");
+                        document.getElementById("star3").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+
+                        savestarrating(n);
+                    }
+                    if (n===1) {
+                        document.getElementById("star1").classList.add("clicked");
+                        document.getElementById("star2").classList.add("unclicked");
+                        document.getElementById("star3").classList.add("unclicked");
+                        document.getElementById("star4").classList.add("unclicked");
+                        document.getElementById("star5").classList.add("unclicked");
+
+                        document.getElementById("star1").classList.remove("unclicked");
+                        document.getElementById("star2").classList.remove("clicked");
+                        document.getElementById("star3").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+
+                        savestarrating(n);
+                    }
+                    if (n===2) {
+                        document.getElementById("star1").classList.add("clicked");
+                        document.getElementById("star2").classList.add("clicked");
+                        document.getElementById("star3").classList.add("unclicked");
+                        document.getElementById("star4").classList.add("unclicked");
+                        document.getElementById("star5").classList.add("unclicked");
+
+                        document.getElementById("star1").classList.remove("unclicked");
+                        document.getElementById("star2").classList.remove("unclicked");
+                        document.getElementById("star3").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+
+                        savestarrating(n);
+                    }
+                    if (n===3) {
+                        document.getElementById("star1").classList.add("clicked");
+                        document.getElementById("star2").classList.add("clicked");
+                        document.getElementById("star3").classList.add("clicked");
+                        document.getElementById("star4").classList.add("unclicked");
+                        document.getElementById("star5").classList.add("unclicked");
+
+                        document.getElementById("star1").classList.remove("unclicked");
+                        document.getElementById("star2").classList.remove("unclicked");
+                        document.getElementById("star3").classList.remove("unclicked");
+                        document.getElementById("star4").classList.remove("clicked");
+                        document.getElementById("star4").classList.remove("clicked");
+                        
+                        savestarrating(n);
+                    }
+                    if (n===4) {
+                        document.getElementById("star1").classList.add("clicked");
+                        document.getElementById("star2").classList.add("clicked");
+                        document.getElementById("star3").classList.add("clicked");
+                        document.getElementById("star4").classList.add("clicked");
+                        document.getElementById("star5").classList.add("unclicked");
+
+                        document.getElementById("star1").classList.remove("unclicked");
+                        document.getElementById("star2").classList.remove("unclicked");
+                        document.getElementById("star3").classList.remove("unclicked");
+                        document.getElementById("star4").classList.remove("unclicked");
+                        document.getElementById("star5").classList.remove("clicked");
+
+                        savestarrating(n);
+                    }
+                    if (n===5) {
+                        document.getElementById("star1").classList.add("clicked");
+                        document.getElementById("star2").classList.add("clicked");
+                        document.getElementById("star3").classList.add("clicked");
+                        document.getElementById("star4").classList.add("clicked");
+                        document.getElementById("star5").classList.add("clicked");
+
+                        document.getElementById("star1").classList.remove("unclicked");
+                        document.getElementById("star2").classList.remove("unclicked");
+                        document.getElementById("star3").classList.remove("unclicked");
+                        document.getElementById("star4").classList.remove("unclicked");
+                        document.getElementById("star5").classList.remove("unclicked");
+
+                        savestarrating(n);
+                    }
+                }
+                
+                function saverating(rating) {
+                    localStorage.setItem(KEYNOTE, JSON.stringify(rating));
+                }
+                function getrating() {
+                    const value = localStorage.getItem(KEYNOTE);
+                    return value ? JSON.parse(value) : [];
+                }
+                const form = document.getElementById("movierating");
+                form.onsubmit = i => {
+                    i.preventDefault();
+                    const mtitle = document.getElementById("title").value;
+                    const myear = document.getElementById("movieyear").value;
+                    const mgenre = document.getElementById("genre").value;
+                    const starrate = getstarrating();
+                    let staramount;
+                    const movielist = document.getElementById("movielist");
+                    let movietext = "";
+                    const movies = getrating();
+                    const obj = {
+                        id: Date.now(),
+                        mtitle,
+                        myear,
+                        mgenre,
+                        starrate
+                    }
+                    movies.push(obj);
+                    for (let i = 0; i < movies.length; i++) {
+                        if (movies[i].starrate==0) {
+                            staramount = "";
+                        }
+                        else if (movies[i].starrate==1) {
+                            staramount = "★";
+                        }
+                        else if (movies[i].starrate==2) {
+                            staramount = "★★";
+                        }
+                        else if (movies[i].starrate==3) {
+                            staramount = "★★★";
+                        }
+                        else if (movies[i].starrate==4) {
+                            staramount = "★★★★";
+                        }
+                        else if (movies[i].starrate==5) {
+                            staramount = "★★★★★";
+                        }
+                        movietext = movietext + `<li> ${movies[i].mtitle} (${movies[i].myear}) - ${movies[i].mgenre}, Rating: <span style="color:gold">${staramount}`;
+                    }
+                    staramount="";
+                    saverating(movies);
+                    movielist.innerHTML=movietext;
+                    movietext="";
+                    form.reset();
+                }
+            </script>
+        </div>
+        <cite>
+            W3Schools. (n.d.). HTML <input type="radio">. Retrieved from w3schools.com: https://www.w3schools.com/tags/att_input_type_radio.asp
+            W3Schools. (n.d.). HTML <input type="checkbox">. Retrieved from w3schools.com: https://www.w3schools.com/tags/att_input_type_checkbox.asp
+            W3Schools. (n.d.). HTML <input> Tag. Retrieved from w3schools.com: https://www.w3schools.com/tags/tag_input.asp
+            W3Schools. (n.d.). HTML <select> Tag. Retrieved from w3schools.com: https://www.w3schools.com/tags/tag_select.asp
+            W3Schools.com. (n.d.-bb). https://www.w3schools.com/css/css_grid.asp
+            Fingeldor. (2013, October 10). How do I automatically stack divs vertically inside a parent? Stack Overflow. https://stackoverflow.com/questions/19284923/how-do-i-automatically-stack-divs-vertically-inside-a-parent
+            MikeSwanson. (2011, May 8). How can I make my DIVs appear below each other. Stack Overflow. https://stackoverflow.com/questions/5925741/how-can-i-make-my-divs-appear-below-each-other
+            Phway, P. P. (2022, February 7). how to show stars based on user rating? Stack Overflow. https://stackoverflow.com/questions/71023164/how-to-show-stars-based-on-user-rating
+            H-v, A. (2011, November 14). Integrating CSS star rating into an HTML form. Stack Overflow. https://stackoverflow.com/questions/8118266/integrating-css-star-rating-into-an-html-form
+            GeeksforGeeks. (2025c, July 23). Star Rating using HTML CSS and JavaScript. GeeksforGeeks. https://www.geeksforgeeks.org/javascript/star-rating-using-html-css-and-javascript/
+            Andrew. (2011, July 21). CSS: How to position two elements on top of each other, without specifying a height? Stack Overflow. https://stackoverflow.com/questions/6780614/css-how-to-position-two-elements-on-top-of-each-other-without-specifying-a-hei
+            W3Schools.com. (n.d.-bc). https://www.w3schools.com/howto/howto_css_star_rating.asp
+            W3Schools.com. (n.d.-bd). https://www.w3schools.com/html/html_form_input_types.asp
+            Sir Roy and Ma'am Aline's code (the test.html and test2.html)
+            Google. (2026, March 8). How to bring back closed tabs [Generated AI response from Search]. Google Search AI. https://share.google/aimode/DHQYmWyF1OJlgzpFr
+            McAdoo, T., Denneny, S., & Lee, C. (2025, September 9). Citing Generative AI in APA Style: Part 1—Reference formats. APA Style. Retrieved March 8, 2026, from https://apastyle.apa.org/blog/cite-generative-ai-references
+            Bato, I. (2026). Q3_2GLithiumBato.html. Philippine Science High School Main Campus.
+        </cite>
+    </body>
+</html>
