@@ -18,52 +18,48 @@
             margin:0px;
         }
         header {
-            background-color:rgb(158, 210, 255);
-            justify-content:center;
-            text-align:center;
-            padding-bottom:100px;
+            background-image: linear-gradient(to bottom, rgb(155, 255, 255), rgb(150, 150, 255));
+            position:relative;
+            width:100%;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size:2vw;
+            height:10vw;
         }
-
         a {
             text-decoration:none;
             color:white;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         div.nav {
-            display:flex;
+            position:relative;
         }
 
-        div.graded {
-            flex:33%;
+        div.graded, div.nongraded, div.other {
+            position:absolute;
             background-color:rgb(199, 199, 199);
-            padding-bottom:50px;
+            width: 30vw;
+            height:20vw;
+            border-radius:2vw;
+            box-shadow: 0vw 0vw 1vw black;
         }
-
-        ul.graded {
-            margin: 5vh;
-            margin-top:9vh;
-            background-color:rgb(131, 193, 247);
-            border-radius:5px;
-            text-align:center;
+        div.graded {
+            left:1vw;
         }
-
         div.nongraded {
-            flex:34%;
-            background-color:gray;
-            padding-bottom:50px;
+            left:35vw;
         }
-
+        div.other {
+            left:69vw;
+        }
         ul.nongraded {
             margin: 5vh;
             margin-top:9vh;
             background-color:rgb(131, 193, 247);
             border-radius:5px;
             text-align:center;
-        }
-
-        div.other {
-            flex:33%;
-            background-color:black;
         }
 
         ul.other {
@@ -129,10 +125,8 @@
     </header>
     <div class="nav">
         <div class="graded">
-            <ul class="graded">
-                <a href="./public/2Q1GLithiumBato.html">All About Our Favorite Minecraft Structures</a></br>
-                <a href="./public/2Q1GLithiumBato.html">Q2 Second Graded Exercise</a>
-            </ul>
+            <a href="./public/2Q1GLithiumBato.html">All About Our Favorite Minecraft Structures</a></br>
+            <a href="./public/2Q1GLithiumBato.html">Q2 Second Graded Exercise</a>
         </div>
         <div class="nongraded">
             <ul class="nongraded">
