@@ -18,7 +18,7 @@
             margin:0px;
         }
         header {
-            background-image: linear-gradient(to bottom, rgb(155, 255, 255), rgb(150, 150, 255));
+            background-image: linear-gradient(to bottom, rgb(25, 255, 117), rgb(0, 186, 90));
             position:relative;
             width:100%;
             display:flex;
@@ -35,15 +35,18 @@
         }
         div.nav {
             position:relative;
+            height:32vw;
+            background-color:rgb(155, 200, 255);
         }
 
         div.graded, div.nongraded, div.other {
             position:absolute;
             background-color:rgb(199, 199, 199);
             width: 30vw;
-            height:20vw;
+            height:25vw;
             border-radius:2vw;
             box-shadow: 0vw 0vw 1vw black;
+            top:2vw;
         }
         div.graded {
             left:1vw;
@@ -54,66 +57,101 @@
         div.other {
             left:69vw;
         }
-        ul.nongraded {
-            margin: 5vh;
-            margin-top:9vh;
-            background-color:rgb(131, 193, 247);
-            border-radius:5px;
+        #minecraftstructures, #q2secondg, #q3secondg, #q4firstg {
+            height:2vw;
+            position:absolute;
+            width:20vw;
             text-align:center;
-        }
-
-        ul.other {
-            margin: 5vh;
-            margin-top:9vh;
-            background-color:rgb(131, 193, 247);
-            border-radius:5px;
-            text-align:center;
-        }
-        
-        div.body {
-            display:flex;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size:1vw;
+            font-weight:bold;
+            text-decoration: none;
+            transition:0.5s;
+            background-color:black;
+            left:5vw;
+            border-radius:1vw;
+            border-style:solid;
+            border-width:0.2vw;
+            border-color:white;
+            box-shadow:0vw 0vw 1vw black;
+        }
+        #minecraftstructures {
+            top:3vw;
+            font-size:0.8vw;
+        }
+        #q2secondg {
+            top:8vw;
+        }
+        #q3secondg {
+            top:13vw;
+        }
+        #q4firstg {
+            top:18vw;
+        }
+        #minecraftstructures:hover {
+            border-color:black;
+            box-shadow: 0vw 0vw 1vw white;
+            color:black;
+            background-color:white;
+            scale:1.1;
+        }
+        #q2secondg:hover {
+            border-color:black;
+            box-shadow: 0vw 0vw 1vw white;
+            color:black;
+            background-color:white;
+            scale:1.1;
+        }
+        #q3secondg:hover {
+            border-color:black;
+            box-shadow: 0vw 0vw 1vw white;
+            color:black;
+            background-color:white;
+            scale:1.1;
+        }
+        #q4firstg:hover {
+            border-color:black;
+            box-shadow: 0vw 0vw 1vw white;
+            color:black;
+            background-color:white;
+            scale:1.1;
         }
 
-        div.first {
-            flex:50%;
-            padding-bottom:80px;
+        #q2secondng {
+            height:2vw;
+            position:absolute;
+            width:20vw;
+            text-align:center;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size:1vw;
+            font-weight:bold;
+            text-decoration: none;
+            transition:0.5s;
+            background-color:black;
+            left:5vw;
+            border-radius:1vw;
+            border-style:solid;
+            border-width:0.2vw;
+            border-color:white;
+            box-shadow:0vw 0vw 1vw black;
         }
-
-        p.first {
-            display:block;
-            margin:auto;
-            width:100vh;
-            height:10vh;
-            text-shadow:2px 2px 5px gray;
-            margin-top:10vh;
+        #q2secondng {
+            top:3vw;
         }
-
-        div.second {
-            flex:50%;
-            background-color:rgb(63, 63, 63)
-        }
-        img {
-            display:block;
-            margin:auto;
-            margin-top:1vh;
+        #q2secondng:hover {
+            border-color:black;
+            box-shadow: 0vw 0vw 1vw white;
+            color:black;
+            background-color:white;
+            scale:1.1;
         }
 
         footer {
-            display:block;
+            position:relative;
             background-color:black;
             color:white;
             font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size:50px;
-        }
-        div#q3 {
-            background-color:black;
-            color:white;
-            font-weight:bold;
-            font-size:3vw;
-        }
-        a#white {
-            color:white;
         }
     </style>
 </head>
@@ -125,33 +163,19 @@
     </header>
     <div class="nav">
         <div class="graded">
-            <a href="./public/2Q1GLithiumBato.html">All About Our Favorite Minecraft Structures</a></br>
-            <a href="./public/2Q1GLithiumBato.html">Q2 Second Graded Exercise</a>
+            <a id="minecraftstructures" href="./public/2Q1GLithiumBato.html">All About Our Favorite Minecraft Structures</a></br>
+            <a id="q2secondg" href="./public/2Q1GLithiumBato.html">Q2 Second Graded Exercise</a>
+            <a id="q3secondg" href="./public/Q3_2GLithiumBato.html">Q3 Second and Third Graded Exercise</a>
+            <a id="q4firstg" href="./public/q41gLithiumLi02.html">Q4 First Graded Exercise</a>
         </div>
         <div class="nongraded">
-            <ul class="nongraded">
-                <a href="./Q21NGLithiumBato.html">Q2 First Non Graded Exercise</a>
-            </ul>
+            <a id="q2secondng" href="./public/Q21NGLithiumBato.html">Q2 First Non Graded Exercise</a>
         </div>
         <div class="other">
             <ul class="other">
 
             </ul>
         </div>
-    </div>
-    <div class="body">
-        <div class="first">
-            <p class="first">
-                Good morning po ma'am! Here is my index.html site. This site will be used to access all of my graded
-                exercises, as well as my non-graded exercises and other things.
-            </p>
-        </div>
-        <div class="second">
-            <img src="../assets/minecrafticon-png.png" alt="image" width="200vh" height="200vh">  
-        </div>
-    </div>
-    <div id="q3">
-        <a id="white" href="Q3_2GLithiumBato.html"> Q3 Second Graded Exercise </a>
     </div>
     <footer>
         <hr/>
