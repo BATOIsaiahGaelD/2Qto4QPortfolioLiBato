@@ -227,6 +227,37 @@
                     const value = localStorage.getItem(KEYNOTE);
                     return value ? JSON.parse(value) : [];
                 }
+
+                function deletemovie(o) {
+                    const placeholder = getrating();
+                    const m = document.getElementById("movielist");
+                    placeholder.splice(o,1);
+                    saverating(placeholder);
+                    let displayer = "";
+                    let amount = "";
+                    for (let i = 0; i < placeholder.length; i++) {
+                        if (placeholder[i].starrate==0) {
+                            amount = "";
+                        }
+                        else if (placeholder[i].starrate<=1 && placeholder[i].starrate>0) {
+                            amount = "★";
+                        }
+                        else if (placeholder[i].starrate<=2 && placeholder[i].starrate>1) {
+                            amount = "★★";
+                        }
+                        else if (placeholder[i].starrate<=3 && placeholder[i].starrate>2) {
+                            amount = "★★★";
+                        }
+                        else if (placeholder[i].starrate<=4 && placeholder[i].starrate>3) {
+                            amount = "★★★★";
+                        }
+                        else if (placeholder[i].starrate<=5 && placeholder[i].starrate>4) {
+                            amount = "★★★★★";
+                        }
+                        displayer = displayer + `<li> ${placeholder[i].mtitle} (${placeholder[i].myear}) - ${placeholder[i].mgenre}, Rating: <span style="color:gold">${amount}</span> <button onclick="deletemovie(${i})">Delete</button> </li>`;
+                    }
+                    m.innerHTML=displayer;
+                }
                 const form = document.getElementById("movierating");
                 form.onsubmit = i => {
                     i.preventDefault();
@@ -235,6 +266,7 @@
                     const mgenre = document.getElementById("genre").value;
                     const starrate = getstarrating();
                     let staramount;
+                    let counter = 0;
                     const movielist = document.getElementById("movielist");
                     let movietext = "";
                     const movies = getrating();
@@ -245,27 +277,39 @@
                         mgenre,
                         starrate
                     }
-                    movies.push(obj);
+                    for (let i=0; i<movies.length; i++) {
+                        if (movies[i].mtitle==obj.mtitle) {
+                            movies[i].starrate = (obj.starrate + movies[i].starrate)/2;
+                            counter++;
+                        }
+                    }
+                    if (counter>0) {
+                        ;
+                    }
+                    else {
+                        movies.push(obj);
+                    }
+                    counter=0;
                     for (let i = 0; i < movies.length; i++) {
                         if (movies[i].starrate==0) {
                             staramount = "";
                         }
-                        else if (movies[i].starrate==1) {
+                        else if (movies[i].starrate<=1 && movies[i].starrate>0) {
                             staramount = "★";
                         }
-                        else if (movies[i].starrate==2) {
+                        else if (movies[i].starrate<=2 && movies[i].starrate>1) {
                             staramount = "★★";
                         }
-                        else if (movies[i].starrate==3) {
+                        else if (movies[i].starrate<=3 && movies[i].starrate>2) {
                             staramount = "★★★";
                         }
-                        else if (movies[i].starrate==4) {
+                        else if (movies[i].starrate<=4 && movies[i].starrate>3) {
                             staramount = "★★★★";
                         }
-                        else if (movies[i].starrate==5) {
+                        else if (movies[i].starrate<=5 && movies[i].starrate>4) {
                             staramount = "★★★★★";
                         }
-                        movietext = movietext + `<li> ${movies[i].mtitle} (${movies[i].myear}) - ${movies[i].mgenre}, Rating: <span style="color:gold">${staramount}`;
+                        movietext = movietext + `<li> ${movies[i].mtitle} (${movies[i].myear}) - ${movies[i].mgenre}, Rating: <span style="color:gold">${staramount}</span> <button onclick="deletemovie(${i})">Delete</button> </li>`;
                     }
                     staramount="";
                     saverating(movies);
